@@ -159,13 +159,13 @@ This was the point at which I discovered that I needed to check the image types 
 
 
 I am not sure I got the prediction results to work correctly. However, the Softmax/TopKV2 results did seem to indicate that the images were mostly predicted.
-| Image			        |     Prediction	         									| 
-|:---------------------:|:-------------------------------------------------------------:| 
-| Yield #13      		| Yield     				 									| 
-| No Entry #17  		| No Entry 		 				 								|
-| Bumpy road #22		| Bunoy Road 				 									|
-| Beware of ice/snow #30| Beware of ice/snow         	 								|
-| Turn left ahead #34	| NONE -- highest Right-of-way at the next intersection			|
+| Image						|     Prediction												| 
+|:-------------------------:|:-------------------------------------------------------------:| 
+| Yield #13      			| Yield     				 									| 
+| No Entry #17  			| No Entry 		 				 								|
+| Bumpy road #22			| Bunoy Road 				 									|
+| Beware of ice/snow #30	| Beware of ice/snow         	 								|
+| Turn left ahead #34		| NONE -- highest Right-of-way at the next intersection			|
 
 
 
@@ -176,7 +176,7 @@ I am not sure I got the prediction results to work correctly. However, the Softm
 
 
 
-| Probability         	|     Prediction	        					| 
+| Probability  			|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1.0         			| Yield #13   									| 
 | 1.0     				| No Entry #17 	    							|
@@ -192,19 +192,15 @@ Image #34 was not identified, The difference appears to be significant - nothing
 
 
 #### Raw Printout data
-| Image-13 | Softmax:TopKV2(values=array([[1.0000000e+00, 8.5065378e-22, 3.8896782e-29, 3.1954395e-29,
-        1.4808161e-30]], dtype=float32), indices=array([[13,  9, 15, 12,  3]], dtype=int32)) |
-       
-|Image-17 | Softmax:TopKV2(values=array([[1.0000000e+00, 1.7424542e-14, 3.7003659e-26, 3.5015371e-27,
-        7.6163175e-29]], dtype=float32), indices=array([[17, 14, 25,  1, 30]], dtype=int32)) |
-        
-|Image-22 | Softmax:TopKV2(values=array([[1.0000000e+00, 1.5426430e-10, 2.6329557e-19, 6.3699912e-20,
-        2.7845497e-22]], dtype=float32), indices=array([[22, 29, 28, 24, 25]], dtype=int32)) |
-        
-|Image-30 | Softmax:TopKV2(values=array([[9.9999106e-01, 8.9571222e-06, 8.0111291e-12, 1.2941000e-14,
-        4.4704625e-16]], dtype=float32), indices=array([[30, 24, 23, 20, 28]], dtype=int32)) |
-        
-|Image-34 | Softmax:TopKV2(values=array([[9.9999440e-01, 5.5890100e-06, 4.5227441e-08, 1.5599768e-09,
-        1.5187650e-09]], dtype=float32), indices=array([[11,  6, 41, 40, 30]], dtype=int32)) |
+| Image-13 	| Softmax:TopKV2(values=array([[1.0000000e+00, 8.5065378e-22, 3.8896782e-29, 3.1954395e-29,
+        1.4808161e-30]], dtype=float32), indices=array([[13,  9, 15, 12,  3]], dtype=int32)) 		|
+|Image-17 	| Softmax:TopKV2(values=array([[1.0000000e+00, 1.7424542e-14, 3.7003659e-26, 3.5015371e-27,
+        7.6163175e-29]], dtype=float32), indices=array([[17, 14, 25,  1, 30]], dtype=int32)) 		| 
+|Image-22 	| Softmax:TopKV2(values=array([[1.0000000e+00, 1.5426430e-10, 2.6329557e-19, 6.3699912e-20,
+        2.7845497e-22]], dtype=float32), indices=array([[22, 29, 28, 24, 25]], dtype=int32)) 		|
+|Image-30 	| Softmax:TopKV2(values=array([[9.9999106e-01, 8.9571222e-06, 8.0111291e-12, 1.2941000e-14,
+        4.4704625e-16]], dtype=float32), indices=array([[30, 24, 23, 20, 28]], dtype=int32)) 		|
+|Image-34 	| Softmax:TopKV2(values=array([[9.9999440e-01, 5.5890100e-06, 4.5227441e-08, 1.5599768e-09,
+        1.5187650e-09]], dtype=float32), indices=array([[11,  6, 41, 40, 30]], dtype=int32)) 		|
 
 
