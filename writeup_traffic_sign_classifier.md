@@ -53,10 +53,11 @@ signs data set:
 * Image data shape = (34799, 32, 32, 3)
 * Number of unique classes = 43
 
+The data is of german traffic signs set to a 32x32x3 size. 
 
 #### 2. Dataset Visualization
 
-I used a horizontal bar chart to show the count of each sign grouping in the data set. I was surprised that the image count of certain groups in the data set, I was expecting a more even distribution for each group. From a high level eyeball perspective the counts in each group seem roughly the same accross the training, validation, and test sets.
+I used a horizontal bar chart to show the count of each sign grouping in the data set. I was surprised that the image count of certain groups in the data set, I was expecting a more even distribution for each image type. From a high level eyeball perspective the counts of images for each classes or types are roughly perportional accross the training, validation, and test image sets.
 
 ![alt text][train_set]
 ![alt text][valid_set]
@@ -66,7 +67,7 @@ I used a horizontal bar chart to show the count of each sign grouping in the dat
 
 #### 1. Image Data Preprocessing
 
-I investigated converting the images to grayscale but in the end decided against it. I was able to convert each channel of an RGB image to grayscale but was not sure how to convert/collapse the channels to a single black and white channel. It may be better to covert the image to a differnt color space like HSL or HSV, grayscale the S channel and use it. However, I did not want to continue with that investigation. 
+I investigated converting the images to grayscale but in the end decided against it. I was able to convert each channel of an RGB image to grayscale but was not sure how to convert/collapse the channels to a single black and white channel. It may be better to covert the image to a differnt color space like HSL or HSV, grayscale the S channel and use the result. However, due to time I did not want to continue with that investigation. 
 
 
 In the end, I decided to only normalize the image. One problem that I discovered later is that the normalization code seen here, converted the image to float64- which meant I had to adjust some things to make the pipeline work as I was expecting a float32.
@@ -122,7 +123,9 @@ My final model results were:
 * Validation Accuracy = 0.956
 * Test Accuracy = 0.935
 
-After getting the model to work, I tested iteratively. The first few runs experimented with various parameters. The results were no where near 0.89 mostly in the 0.35 - 0.55 range. I looked at the preprocessing step to make sure that was not confounding the results. This was the point where I experimented with the idea of grayscaling the model. After reading the tensorflow documentation and other resources, the objective to normalize between -1 and 1 was discovered. That convinced me that the adjustments to the normalizing step was correct. So the next step was to add a dropout to the LeNet. I added it to the end because it seemed like the layers and steps within an epoch should be almost fully finished before dropping values. I did not test alternatives. You can see a rough test history in the LeNet cell where I captured each test run. After reaching the target accuracy on the test batch I continued with the project. Later, when applying the individual images, I discovered that the training images were using float64 data and I needed to make adjustments to handle the changes. With the float32, fewer epochs were needed to reach the same level of accuracy. 
+After getting the model to work, I tested iteratively. The first few runs experimented with various parameters. The results were no where near 0.89 mostly in the 0.35 - 0.55 range. I looked at the preprocessing step to make sure that was not confounding the results. This was the point where I experimented with the idea of grayscaling the model. After reading the tensorflow documentation and other resources, the objective to normalize between -1 and 1 was discovered. That convinced me that the adjustments to the normalizing step was correct. So the next step was to add a dropout to the LeNet. I added it to the end because it seemed like the layers and steps within an epoch should be almost fully finished before dropping values. I did not test alternative placements or other elements. 
+
+You can see a rough test history in the LeNet cell where I captured each test run. After reaching the target accuracy on the test batch I continued with the project. Later, when applying the individual images, I discovered that the training images were using float64 data and I needed to make adjustments to handle the changes. With the float32, fewer epochs were needed to reach the same level of accuracy. 
 
 
 
@@ -138,8 +141,8 @@ Here are five German traffic signs that I found on the web:
 
 
 
-I manually adjusted the size of the image using gimp. At this point, I was not interested in investigating how to adjust the size to 32x32x3 programmatically. 
-I discovered that a couple of images had an alpha channel and I had to remove that. Sign 27 did not seem to convert correctly, so I left it out.
+I manually adjusted the size of the image using gimp. At this point due to time, I was not interested in investigating how to adjust the size to 32x32x3 programmatically. 
+I discovered that a couple of images had an alpha channel and I had to remove that. Sign 27 did not seem to convert correctly, so I left it out. The size was not as expected - again, not sure why and did not want to take the time to find out.
 
 Sign 13 was taken from a landscape image, where the others seem to be svg drawings. The difference is that a real image might be preferred as that would be the true test for the model. The other comparison that would be interesting to make is how the result compared to the number of training images in a group. Also most images are straight on rather then at an angle.
 
@@ -156,13 +159,13 @@ This was the point at which I discovered that I needed to check the image types 
 
 
 I am not sure I got the prediction results to work correctly. However, the Softmax/TopKV2 results did seem to indicate that the images were mostly predicted.
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Yield #13      		| Yield     									| 
-| No Entry #17  		| No Entry 										|
-| Bumpy road #22		| Bunoy Road 									|
+| Image			        |     Prediction	         									| 
+|:---------------------:|:-------------------------------------------------------------:| 
+| Yield #13      		| Yield     				 									| 
+| No Entry #17  		| No Entry 		 				 								|
+| Bumpy road #22		| Bunoy Road 				 									|
 | Beware of ice/snow #30| Beware of ice/snow         	 				|
-| Turn left ahead #34	| Right-of-way at the next intersection			|
+| Turn left ahead #34	| NONE -- highest Right-of-way at the next intersection			|
 
 
 
