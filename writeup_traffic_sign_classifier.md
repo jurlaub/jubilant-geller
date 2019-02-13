@@ -159,6 +159,8 @@ This was the point at which I discovered that I needed to check the image types 
 
 
 I am not sure I got the prediction results to work correctly. However, the Softmax/TopKV2 results did seem to indicate that the images were mostly predicted.
+
+
 | Image						|     Prediction												| 
 |:-------------------------:|:-------------------------------------------------------------:| 
 | Yield #13      			| Yield     				 									| 
@@ -192,6 +194,7 @@ Image #34 was not identified, The difference appears to be significant - nothing
 
 
 #### Raw Printout data
+
 | Image-13 	| Softmax:TopKV2(values=array([[1.0000000e+00, 8.5065378e-22, 3.8896782e-29, 3.1954395e-29,
         1.4808161e-30]], dtype=float32), indices=array([[13,  9, 15, 12,  3]], dtype=int32)) 		|
 |Image-17 	| Softmax:TopKV2(values=array([[1.0000000e+00, 1.7424542e-14, 3.7003659e-26, 3.5015371e-27,
